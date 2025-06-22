@@ -1,0 +1,8 @@
+todolistappjdbc\controller\RootController.class
+todolistappjdbc\controller\TaskController.class
+todolistappjdbc\dao\TaskDao.class
+todolistappjdbc\model\Task.class
+todolistappjdbc\service\TaskService.class
+todolistappjdbc\service\TaskServiceImpl.class
+todolistappjdbc\dao\TaskDaoImpl.class
+todolistappjdbc\AJListApplication.class

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>AJList - Task Manager</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">AJList - Task Manager</h1>
+
+        <form action="/tasks/add" method="post" class="mb-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-sm-4">
+                    <input type="text" name="title" class="form-control" placeholder="Task Title" required />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="description" class="form-control" placeholder="Task Description" required />
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary w-100">Add Task</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task, stat : ${tasks}">
+                    <td th:text="${stat.count}">1</td>
+                    <td th:text="${task.title}">Sample Title</td>
+                    <td th:text="${task.description}">Sample Description</td>
+                    <td>
+                        <span th:text="${task.completed} ? 'Done' : 'Pending'" 
+                              th:classappend="${task.completed} ? 'badge bg-success' : 'badge bg-warning'">Pending</span>
+                    </td>
+                    <td>
+                        <!-- URLs updated with /tasks prefix -->
+                        <a th:href="@{'/tasks/done/' + ${task.id}}" class="btn btn-success btn-sm me-1">Done</a>
+                        <a th:href="@{'/tasks/delete/' + ${task.id}}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
